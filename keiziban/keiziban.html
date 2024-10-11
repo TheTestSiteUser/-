@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="content"></div>
+
+    <div id="control">
+        <div>
+            <label for="text">文章</label>
+            <textarea id="text" placeholder="テキストを入力" rows="4" cols="50"></textarea>
+
+            <label for="color">文字色</label> 
+    <input type="color"id="font_color"value="#000000">
+
+    <label for="font_size">文字サイズ</label> 
+    <input type="number"id="font_size" min="1" max="100" step="1" value="16" required>
+
+    <label for="font_select">文字パターン</label> 
+    <select name="font_select" id="font_select">
+    <option value="p">通常文字</option>
+    <option value="h1">強調文字</option>
+    <option value="i">射線文字</option>
+    <option value="u">下線文字</option>
+    <option value="a">他サイトへのリンク</option>
+</select>
+
+<label for="font_family">フォント</label>
+<select id="font_family">
+    <optgroup label="日本語対応フォント">
+        <option value="MS Gothic">ゴシック体（MS Gothic）</option>
+        <option value="MS Mincho">明朝体（MS Mincho）</option>
+        <option value="Yu Gothic">ゴシック体（Yu Gothic）</option>
+        <option value="Hiragino Kaku Gothic">角ゴシック体（ヒラギノ角ゴシック）</option>
+        <option value="Hiragino Mincho">明朝体（ヒラギノ明朝）</option>
+        <option value="Noto Sans JP">サンセリフ体（Noto Sans JP）</option>
+        <option value="Noto Serif JP">セリフ体（Noto Serif JP）</option>
+    </optgroup>
+    <optgroup label="日本語未対応フォント">
+        <option value="Arial">サンセリフ体（Arial）</option>
+        <option value="Verdana">サンセリフ体（Verdana）</option>
+        <option value="Georgia">セリフ体（Georgia）</option>
+        <option value="Times New Roman">セリフ体（Times New Roman）</option>
+        <option value="Courier New">モノスペース（Courier New）</option>
+        <option value="Impact">サンセリフ体（Impact）</option>
+        <option value="Trebuchet MS">サンセリフ体（Trebuchet MS）</option>
+        <option value="Palatino Linotype">セリフ体（Palatino Linotype）</option>
+        <option value="Tahoma">サンセリフ体（Tahoma）</option>
+        <option value="Segoe UI">サンセリフ体（Segoe UI）</option>
+        <option value="Comic Sans MS">カジュアル体（Comic Sans MS）</option>
+    </optgroup>
+</select>
+
+
+
+    <button onclick="text_big()">拡大</button>
+    </div>
+
+    <div>
+        <p>動画投稿サイト対応(URLを貼ったら動画内容を表示可能)<br>YouTube、ニコニコ、Dailymotion、TikTok</p>
+    </div>
+
+    <div>
+        <label for="file_input">画像</label>
+        <input type="file" id="file_input" accept="image/*">
+    </div>
+    
+    <div>
+        <label for="audio_input">音楽</label>
+        <input type="file" id="audio_input" accept="audio/*">
+    </div>
+    
+    <div>
+        <label for="video_input">動画</label>
+        <input type="file" id="video_input" accept="video/*">
+    </div>
+
+<div>
+    <label for="save_number">自動保存レスポンシブ数</label>
+    <input type="number" id="save_number" name="quantity" min="1" max="10" step="1" value="1" required>
+
+<br>
+
+  <label for="grape">自動保存ON・OFF</label>
+    <input type="checkbox" id="grape" name="fruit" value="grape">
+
+<br>
+
+    <label for="save_select">保存ファイル選択</label>
+    <select id="save_select" name="save">
+        <optgroup label="画像データ(画像を用いた場合)">
+            <option value="jpg">JPEG (.jpg)</option>
+            <option disabled>データが小さく、ほとんどのデバイスで見られます。写真やイラストに向いていますが、圧縮すると画質が少し落ちることがあります。</option>
+            <option value="webp">WebP (.webp)</option>
+            <option disabled>JPEGよりもデータがさらに小さく、画質も保てる画像形式です。ウェブでよく使われていますが、一部の古いソフトでは使えないことがあります。</option>
+        </optgroup>
+        
+        <optgroup label="文章データ(アスキーアートや文章だけの場合)">
+            <option value="txt">テキストファイル (.txt)</option>
+            <option disabled>単純な文字だけのファイルです。どんなパソコンでも開けて、簡単に編集できます。</option>
+            <option value="rtf">リッチテキストファイル (.rtf)</option>
+            <option disabled>文字に色をつけたり、太字や斜体にしたりできるファイルです。他のソフトでも使いやすいです。</option>
+            <option value="pdf">PDF (.pdf)</option>
+            <option disabled>見た目が崩れず、印刷に適した形式です。どのデバイスでも同じように見ることができます。</option>
+            <option value="md">Markdown (.md)</option>
+            <option disabled>簡単な記号を使って書く形式で、ウェブページのような見た目にできます。読みやすく、書くのも簡単です。</option>
+        </optgroup>
+        
+        <optgroup label="ウェブデータ(自由に編集したい場合)">
+            <option value="html">HTML (.html)</option>
+            <option disabled>ウェブページを作るためのファイルです。文章や画像を整理して表示できます。ブラウザで見ることができ、リンクやボタンを作ることもできます。</option>
+        </optgroup>
+    </select>
+    
+    <button onclick="save()">保存</button>
+
+</div>
+</div>
+<button onclick="control_display()" id="hidden">非表示</button>
+        <button onclick="post()"id="post">投稿</button>
+    
+    <script src="script.js"></script>
+</body>
+</html>

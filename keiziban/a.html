@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>保存ボタンの例</title>
+    <style>
+        #capture {
+            border: 1px solid #000;
+            padding: 20px;
+            width: 300px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="capture">
+        <h2>保存する要素</h2>
+        <p>この内容が画像や文書として保存されます。</p>
+    </div>
+
+    <button id="saveImage">画像として保存</button>
+    <button id="saveText">テキストとして保存</button>
+    <button id="saveHTML">HTMLとして保存</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        // 画像として保存
+        document.getElementById('saveImage').addEventListener('click', () => {
+            const element = document.getElementById('capture');
+            html2canvas(element).then((canvas) => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'capture.png';
+                link.click();
+            }).catch(error => {
+                console.error("Error capturing image:", error);
+            });
+        });
+
+        // テキストとして保存
+        document.getElementById('saveText').addEventListener('click', () => {
+            const text = document.getElementById('capture').innerText;
+            const blob = new Blob([text], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'capture.txt';
+            link.click();
+        });
+
+        // HTMLとして保存
+        document.getElementById('saveHTML').addEventListener('click', () => {
+            const html = document.getElementById('capture').outerHTML;
+            const blob = new Blob([html], { type: 'text/html' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'capture.html';
+            link.click();
+        });
+    </script>
+</body>
+</html>
