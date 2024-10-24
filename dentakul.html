@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>関数電卓</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
+    <style>
+        .calculator {
+            margin: auto;
+            text-align: center;
+        }
+        .display {
+            width: 100%;
+            height: 40px;
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        .button {
+            width: 45px;
+            height: 45px;
+            margin: 2px;
+            font-size: 18px;
+        }
+        .input-field {
+            width: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" class="display" id="display" readonly>
+        <br>
+        <!-- 電卓のボタン -->
+        <button class="button" onclick="appendToDisplay('1')">1</button>
+        <button class="button" onclick="appendToDisplay('2')">2</button>
+        <button class="button" onclick="appendToDisplay('3')">3</button>
+        <button class="button" onclick="clearDisplay()">C</button>
+        <br>
+        <button class="button" onclick="appendToDisplay('4')">4</button>
+        <button class="button" onclick="appendToDisplay('5')">5</button>
+        <button class="button" onclick="appendToDisplay('6')">6</button>
+        <button class="button" onclick="appendToDisplay('+')">+</button>
+        <br>
+        <button class="button" onclick="appendToDisplay('7')">7</button>
+        <button class="button" onclick="appendToDisplay('8')">8</button>
+        <button class="button" onclick="appendToDisplay('9')">9</button>
+        <button class="button" onclick="appendToDisplay('-')">-</button>
+        <br>
+        <button class="button" onclick="appendToDisplay('0')">0</button>
+        <button class="button" onclick="appendToDisplay('.')">.</button>
+        <button class="button" onclick="calculateExpression()">=</button>
+        <button class="button" onclick="appendToDisplay('*')">×</button>
+        <br>
+        <!-- 追加の関数機能を選択 -->
+        <select id="operation" onchange="updateInputs()">
+            <option value="none">選択してください</option>
+            <option value="linear">一次関数</option>
+            <option value="quadratic">二次関数</option>
+            <option value="cubic">三次関数</option>
+            <option value="factorization">因数分解</option>
+            <option value="expansion">展開</option>
+        </select>
+        <br>
+        <!-- 可変の入力フィールドをここに表示する -->
+        <div id="input-fields"></div>
+        <br>
+        <button class="button" onclick="calculateSpecial()" style="width: auto;">特殊計算</button>
+    </div>
+    <script>
+        // 電卓の機能
+        function appendToDisplay(value) {
+            document.getElementById("display").value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById("display").value = "";
+        }
+
+        function calculateExpression() {
+            const expression = document.getElementById("display").value;
+            try {
+                const result = eval(expression); // evalを使用するのはセキュリティ上注意が必要です
+                document.getElementById("display").value = result;
+            } catch (error) {
+                document.getElementById("display").value = "エラー";
+            }
+        }
+
+        // 入力フィールドを更新する関数
+        function updateInputs() {
+            const operation = document.getElementById("operation").value;
+            const display = document.getElementById("display");
+            const inputFields = document.getElementById("input-fields");
+            inputFields.innerHTML = ""; // 現在のフィールドをクリア
+
+            // 選択された関数に応じて例を表示
+            if (operation === "linear") {
+                display.value = "例: y = ax + b";
+                inputFields.innerHTML = `
+                    a: <input type="number" class="input-field" id="a" placeholder="a">
+                    b: <input type="number" class="input-field" id="b" placeholder="b">
+                    x: <input type="number" class="input-field" id="x" placeholder="x">
+                `;
+            } else if (operation === "quadratic") {
+                display.value = "例: y = ax^2 + bx + c";
+                inputFields.innerHTML = `
+                    a: <input type="number" class="input-field" id="a" placeholder="a">
+                    b: <input type="number" class="input-field" id="b" placeholder="b">
+                    c: <input type="number" class="input-field" id="c" placeholder="c">
+                    x: <input type="number" class="input-field" id="x" placeholder="x">
+                `;
+            } else if (operation === "cubic") {
+                display.value = "例: y = ax^3 + bx^2 + cx + d";
+                inputFields.innerHTML = `
+                    a: <input type="number" class="input-field" id="a" placeholder="a">
+                    b: <input type="number" class="input-field" id="b" placeholder="b">
+                    c: <input type="number" class="input-field" id="c" placeholder="c">
+                    d: <input type="number" class="input-field" id="d" placeholder="d">
+                    x: <input type="number" class="input-field" id="x" placeholder="x">
+                `;
+            } else if (operation === "factorization") {
+                display.value = "例: x^2 - 1";
+                inputFields.innerHTML = `
+                    式: <input type="text" class="input-field" id="expression" placeholder="例: x^2 - 1">
+                `;
+            } else if (operation === "expansion") {
+                display.value = "例: (x + 2)^2";
+                inputFields.innerHTML = `
+                    式: <input type="text" class="input-field" id="expression" placeholder="例: (x + 2)^2">
+                `;
+            } else {
+                display.value = "";
+            }
+        }
+
+        // 特殊計算を行う関数
+        function calculateSpecial() {
+            const operation = document.getElementById("operation").value;
+            let result = "";
+
+            if (operation === "linear") {
+                const a = parseFloat(document.getElementById("a").value);
+                const b = parseFloat(document.getElementById("b").value);
+                const x = parseFloat(document.getElementById("x").value);
+                result = a * x + b; // 一次関数: ax + b
+            } else if (operation === "quadratic") {
+                const a = parseFloat(document.getElementById("a").value);
+                const b = parseFloat(document.getElementById("b").value);
+                const c = parseFloat(document.getElementById("c").value);
+                const x = parseFloat(document.getElementById("x").value);
+                result = a * x * x + b * x + c; // 二次関数: ax^2 + bx + c
+            } else if (operation === "cubic") {
+                const a = parseFloat(document.getElementById("a").value);
+                const b = parseFloat(document.getElementById("b").value);
+                const c = parseFloat(document.getElementById("c").value);
+                const d = parseFloat(document.getElementById("d").value);
+                const x = parseFloat(document.getElementById("x").value);
+                result = a * x * x * x + b * x * x + c * x + d; // 三次関数: ax^3 + bx^2 + cx + d
+            } else if (operation === "factorization") {
+                const expression = document.getElementById("expression").value;
+                try {
+                    const factored = math.factor(expression); // 因数分解
+                    result = factored.toString();
+                    console.log(result)
+                } catch (error) {
+                    result = "因数分解できませんでした。";
+                }
+            } else if (operation === "expansion") {
+                const expression = document.getElementById("expression").value;
+                try {
+                    const expanded = math.expand(expression); // 展開
+                    result = expanded.toString();
+                } catch (error) {
+                    result = "展開できませんでした。";
+                }
+            }
+
+            document.getElementById("display").value = result;
+        }
+    </script>
+</body>
+</html>
