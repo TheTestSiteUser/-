@@ -1,0 +1,213 @@
+@font-face {
+    font-family: 'IPA Gothic'; 
+    src: url('font/IPAexfont00301/ipaexg.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'IPA Mincho'; 
+    src: url('font/IPAexfont00301/ipaexm.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'ChilloutTYP-Regular'; 
+    src: url('font/ChilloutTYP-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Anzumoji'; 
+    src: url('font/APJapanesefont.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Planetarium'; 
+    src: url('font/Planetarium.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Buildingsandundertherailwaytracks-Regular'; 
+    src: url('font/Buildingsandundertherailwaytracks-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Dancers'; 
+    src: url('font/Dancers.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'HannariMincho-Regular'; 
+    src: url('font/HannariMincho-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Regular'; 
+    src: url('font/TypingartGrotesqueTYP-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Koku Mincho'; 
+    src: url('font/font_1_kokumr_1.00_rls.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Mona'; 
+    src: url('font/mona-outline.ttf') format('woff2');
+}
+
+@font-face {
+    font-family: 'Onryou'; 
+    src: url('font/onryou.TTF') format('truetype');
+}
+
+@font-face {
+    font-family: 'Kowai'; 
+    src: url('font/ふぉんとうは怖い明朝体.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Ankoku'; 
+    src: url('font/Zomzi.TTF') format('opentype');
+}
+
+@font-face {
+    font-family: 'Chikara Duyoku'; 
+    src: url('font/851CHIKARA-DZUYOKU_kanaA_004.ttf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Chikara Yowaku'; 
+    src: url('font/851CHIKARA-YOWAKU_002.ttf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Monaco'; 
+    src: url('font/monaco.ttf') format('opentype');
+}
+
+#content{
+position: fixed;
+bottom: calc(30% + 25px);
+left: 0;
+max-height: 70%;
+overflow: auto;
+display: flex;
+flex-direction: column; /* 縦並びにする */
+width: 100%;
+top:0;
+}
+#content canvas{
+    border: solid black;
+    box-sizing: border-box; /* パディングを含めたサイズ計算 */
+}
+p{
+    margin: 0;
+}
+h3{
+    margin: 0;
+}
+input{
+    background-color: white;
+    color: black;
+}
+input[type="number"]{
+    width: 50px;
+}
+input[type="color"],input[type="file"]{
+    cursor: pointer;
+}
+select{
+    width: 160px;
+    cursor: pointer;
+}
+button{
+    background-color: white;
+}
+button:hover,input:hover,select:hover{
+    box-shadow: inset 0 0 10px 5px rgba(255, 255, 255, 0.5);  /* 内側に光の影 */
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+#control{
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 30%;
+    border: solid black;
+    box-sizing: border-box; /* パディングを含めたサイズ計算 */
+    overflow: auto;
+    padding-bottom: 25.5px;
+}
+#control > :nth-child(odd){
+    border: solid black;
+    box-sizing: border-box; /* パディングを含めたサイズ計算 */
+    background-color: black;
+    color: white;
+}
+
+#hidden{
+    position: fixed;
+bottom: 30%;
+right:0;
+width: 100%;
+}
+#post{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+}
+.normal_textarea{
+    width: 95%;
+}
+.big_area{
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    min-width: max-content; /* 子要素の幅を下回らないようにする */
+    overflow: auto;
+}
+.disabled_number{
+    background-color: gray;
+}
+
+/* CSS */
+.highlight_space {
+    box-shadow: inset 0 0 10px 5px rgba(255, 255, 255, 0.5);  /* 内側に光の影 */
+    border: solid red;
+}
+.boundary{
+    background-color: black;
+    cursor: pointer;
+    color: white;
+    display: flex;                /* フレックスボックスを使用 */
+    justify-content: space-between; /* 左右に要素を配置 */
+    padding: 0 5px;
+}
+
+
+.container3D {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.move_joy {
+    position: absolute;
+    top: 100px;
+    left: 60px;
+}
+.angle_joy {
+    position: absolute;
+    top: 100px;
+    right: 60px;
+}
+.camera_reset{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 100%;
+}
